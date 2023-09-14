@@ -1,38 +1,502 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 123px;
+  padding: 20px;
+  background-color: #D9D9D9;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  width: 860px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  height: 50px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+nav ul li {
+  list-style: none;
+  padding: 15px 15px 13px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Karla', sans-serif;
+  color: #000;
+  font-weight: 500;
+  padding-bottom: 2px;
+}
+
+nav ul li a:hover {
+  border-bottom: 1px solid #000;
+}
+
+.hero {
+  background-color: #495E57;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+
+.hero_text, .hero_img {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero_text {
+  align-items: flex-start;
+}
+
+.hero img {
+  max-height: 354px;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: 'Markazi Text', serif;
+  color: #F4CE14;
+  font-weight: 600;
+}
+
+.hero_text h2 {
+  color: #EDEFEE;
+  margin-bottom: 20px;
+  font-family: 'Markazi Text', serif;
+  font-size: 40px;
+}
+
+.hero_text p {
+  font-family: 'Karla', sans-serif;
+  color: #EDEFEE;
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 70px;
+}
+
+.hero_text a {
+  padding: 20px 35px;
+  background-color: #F4CE14;
+  color: #000;
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.hero_text a:hover {
+  color: #EDEFEE;
+  background-color: #000;
+}
+
+.specials {
+  display: flex;
+  justify-content: center;
+  background-color: #D9D9D9;
+}
+
+.specials .container {
+  padding: 80px 0;
+  flex-direction: column;
+}
+
+.specials_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 55px;
+}
+
+.specials_top h2 {
+  font-family: 'Karla', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.specials_top a {
+  padding: 20px 35px;
+  background-color: #F4CE14;
+  color: #000;
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 10px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.specials_top a:hover {
+  color: #EDEFEE;
+  background-color: #000;
+}
+
+.dishes {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+}
+
+.dish {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.dish > img {
+  height: 172px;
+  width: 100%;
+  border: 1px solid #000;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.dish_decription {
+  padding: 20px;
+  background-color: #EDEFEE;
+  height: -webkit-fill-available;
+  position: relative;
+}
+
+.specials_name {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 0.9;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.specials_name span {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  color: #EE9972;
+}
+
+.specials_text {
+  color: #495E57;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  margin-bottom: 45px;
+}
+
+.dish_decription a {
+  text-decoration: none;
+  color: #333;
+  font-family: serif;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  position: absolute;
+  bottom: 20px;
+  display: inline-flex;
+}
+
+.dish_decription a:hover {
+  color: #F4CE14;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.dish_decription a:hover img {
+  transform: scale(1.1);
+}
+
+.dish_decription a img {
+  max-height: 16px;
+  margin-left: 12px;
+}
+
+.testimonals {
+  padding: 130px 0;
+  background-color: #495E57;
+  display: flex;
+  justify-content: center;
+}
+
+.testimonals .container {
+  flex-direction: column;
+}
+
+.testimonals h2 {
+  font-family: 'Markazi Text', serif;
+  font-size: 36px;
+  color: #F4CE14;
+  font-weight: 400;
+  margin-bottom: 45px;
+}
+
+.testimonals_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.testimonal {
+  width: 23%;
+  padding: 20px;
+  background-color: #EDEFEE;
+  font-family: 'Karla', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: default;
+  border-radius: 5px;
+}
+
+.testimonal:hover.testimonal span i.fa-solid {
+  display: inline;
+}
+
+.testimonal:hover.testimonal span i.fa-regular {
+  display: none;
+}
+
+.testimonal span {
+  margin-top: 10px;
+  color: #EE9972;
+}
+
+.testimonal span i.fa-solid,
+.testimonal span i.fa-regular {
+  display: none;
+  margin-left: 10px;
+}
+
+.testimonal span i.fa-regular {
+  display: inline;
+  margin-left: 10px;
+}
+
+.testimonal_user {
+  display: flex;
+  align-items: center;
+  margin: 12px 0 20px;
+  position: relative;
+}
+
+.testimonal_user::after {
+  content: "";
+  position: absolute;
+  background-color: #D9D9D9;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #000;
+  top: -4px;
+  left: 2px;
+  display: block;
+}
+
+.testimonal_user img {
+  width: 55px;
+  height: 55px;
+  z-index: 2;
+  border: 1px solid #000;
+}
+
+.testimonal_user p {
+  margin-left: 13px;
+}
+
+.testimonal > p {
+  font-weight: 400;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  background-color: #D9D9D9;
+  padding: 30px 0;
+}
+
+.about .container {
+  flex-direction: row;
+}
+
+.about .text,
+.about .images {
+  width: 50%;
+  position: relative;
+  height: 100%;
+}
+
+.about .text {
+  font-family: 'Karla', sans-serif;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
+  color: #EDEFEE;
+  padding: 75px 0;
+}
+
+.about_name {
+  font-size: 55px;
+  font-family: 'Markazi Text', serif;
+  color: #F4CE14;
+}
+
+.about_place {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.about_text {
+  font-size: 20px;
+  text-shadow: none;
+  color: #333;
+}
+
+.about .images img {
+  border-radius: 10px;
+  width: 350px;
+  height: 233px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.about .images img:first-of-type {
+  left: 0;
+  bottom: 20px;
+  z-index: 2;
+}
+
+.about .images img:last-of-type {
+  right: 0;
+  top: 20px;
+  z-index: 0;
+}
+
+.chefs_hide,
+.restaurant_hide {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .6);
+  width: 350px;
+  height: 233px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.chefs_hide {
+  right: 0;
+  top: 20px;
+}
+
+.restaurant_hide {
+  left: 0;
+  bottom: 20px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: #495E57;
+  padding: 65px 0;
+  font-family: 'Karla', sans-serif;
+  color: #EDEFEE;
+  font-size: 20px;
+}
+
+footer img {
+  align-self: center;
+}
+
+footer .container {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.navigation,
+.contact,
+.socials {
   display: flex;
   flex-direction: column;
+}
+
+.socials {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+footer nav ul {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer nav ul li {
+  padding: 0 0 10px 0;
+}
+
+footer nav ul li a {
+  font-size: 20px;
+  font-weight: 500;
+  color: #EDEFEE;
+}
+
+footer nav ul li a:hover,
+footer a:hover {
+  border-bottom: none;
+  color: #F4CE14;
+}
+
+.navigation span {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.contact {
+  display: flex;
+}
+
+.contact span:first-child,
+.socials span {
+  font-weight: 800;
+}
+
+.contact span,
+.contact a,
+.socials span,
+.socials a {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #EDEFEE;
+}
+
+.socials a {
+  font-size: 35px;
 }

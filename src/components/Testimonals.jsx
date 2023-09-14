@@ -9,7 +9,7 @@ const Testimonals = () => {
         {
             rating: 4.5,
             name: 'Julia',
-            text: 'Nice bruchetta',
+            text: 'Great bruchetta',
             img: julia,
         },
         {
@@ -25,7 +25,7 @@ const Testimonals = () => {
             img: tilly,
         },
         {
-            rating: 4.0,
+            rating: 4.6,
             name: 'Dan',
             text: 'Delicious dessert',
             img: dan,
@@ -34,20 +34,26 @@ const Testimonals = () => {
 
     return (
         <section className="testimonals">
-            <h2>Testimonals</h2>
-            <div className="testimonals_container">
-                {testimonals.map((item, i) => {
-                    return(
-                        <div className="testimonal" key={i}>
-                            <span>{item.rating}</span>
-                            <div className="testimonal_user">
-                                <img src={item.img} alt="User's photo" />
-                                <p>{item.name}</p>
+            <div className="container">
+                <h2>Testimonals</h2>
+                <div className="testimonals_container">
+                    {testimonals.map((item, i) => {
+                        return(
+                            <div className="testimonal" key={i}>
+                                <span>
+                                    {item.rating.toFixed(1)} / 5.0
+                                    <i className="fa-solid fa-star"></i>
+                                    <i className="fa-regular fa-star"></i>
+                                </span>
+                                <div className="testimonal_user">
+                                    <img src={item.img} alt="User's photo" />
+                                    <p>{item.name}</p>
+                                </div>
+                                <p>{item.text}</p>
                             </div>
-                            <p>{item.text}</p>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
         </section>
     );
