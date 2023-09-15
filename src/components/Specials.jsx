@@ -17,7 +17,7 @@ const Specials = () => {
                         <img src={salad} alt="bruchetta" />
                         <div className="dish_decription">
                             <div className="specials_name">
-                                Greek salad
+                                <h3>Greek salad</h3>
                                 <span>$12.99</span>
                             </div>
                             <p className="specials_text">
@@ -33,7 +33,7 @@ const Specials = () => {
                         <img src={bruchetta} alt="bruchetta" />
                         <div className="dish_decription">
                             <div className="specials_name">
-                                Bruchetta
+                                <h3>Bruchetta</h3>
                                 <span>$5.99</span>
                             </div>
                             <p className="specials_text">
@@ -49,7 +49,7 @@ const Specials = () => {
                         <img src={dessert} alt="bruchetta" />
                         <div className="dish_decription">
                             <div className="specials_name">
-                                Lemon Dessert
+                                <h3>Lemon Dessert</h3>
                                 <span>$5.00</span>
                             </div>
                             <p className="specials_text">

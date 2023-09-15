@@ -191,12 +191,15 @@ h1 {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Markazi Text', serif;
   font-weight: 500;
-  font-size: 24px;
   line-height: 0.9;
-  color: #000;
+  color: #333;
   margin-bottom: 30px;
+}
+
+.specials_name h3 {
+  font-family: 'Markazi Text', serif;
+  font-size: 24px;
 }
 
 .specials_name span {
@@ -280,6 +283,10 @@ h1 {
 
 .testimonal:hover.testimonal span i.fa-solid {
   display: inline;
+}
+
+.testimonal:hover .testimonal_user::after {
+  background-color: #EE9972;
 }
 
 .testimonal:hover.testimonal span i.fa-regular {
