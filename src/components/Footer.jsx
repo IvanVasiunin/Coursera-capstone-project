@@ -1,5 +1,7 @@
 import footerLogo from '../assets/images/footer_logo.jpg';
 import Nav from './Nav';
+import { FaXTwitter, FaFacebookF, FaInstagram } from "react-icons/fa6";
+
 
 const Footer = () => {
 
@@ -20,13 +22,13 @@ const Footer = () => {
                 <div className='socials'>
                     <span>Socails</span>
                     <a href="https://instagram.com">
-                        <i className="fa-brands fa-instagram"></i>
+                        <FaInstagram/>
                     </a>
                     <a href="https://x.com">
-                        <i className="fa-brands fa-x-twitter"></i>
+                        <FaXTwitter/>
                     </a>
                     <a href="https://facebook.com">
-                        <i className="fa-brands fa-facebook"></i>
+                        <FaFacebookF/>
                     </a>
                 </div>
             </div>

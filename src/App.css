@@ -281,7 +281,8 @@ h1 {
   border-radius: 5px;
 }
 
-.testimonal:hover.testimonal span i.fa-solid {
+.testimonal:hover.testimonal span svg:first-of-type
+{
   display: inline;
 }
 
@@ -289,7 +290,7 @@ h1 {
   background-color: #EE9972;
 }
 
-.testimonal:hover.testimonal span i.fa-regular {
+.testimonal:hover.testimonal span svg:last-of-type {
   display: none;
 }
 
@@ -298,15 +299,15 @@ h1 {
   color: #EE9972;
 }
 
-.testimonal span i.fa-solid,
-.testimonal span i.fa-regular {
+.testimonal span svg:first-of-type,
+.testimonal span svg:last-of-type {
   display: none;
+  padding-top: 3px;
   margin-left: 10px;
 }
 
-.testimonal span i.fa-regular {
+.testimonal span svg:last-of-type {
   display: inline;
-  margin-left: 10px;
 }
 
 .testimonal_user {
@@ -506,4 +507,81 @@ footer a:hover {
 
 .socials a {
   font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.reservation {
+  display: flex;
+  justify-content: center;
+  background-color: #EDEFEE;
+  padding: 50px 0;
+}
+
+.reservation h2 {
+  font-family: 'Markazi Text', serif;
+  font-size: 40px;
+  color: #333;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.reservation .container {
+  flex-direction: column;
+}
+
+.reservation .container form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.chakra-select {
+  padding-left: 40px!important;
+  cursor: pointer;
+}
+
+form {
+  width: 100%;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #e6c316;
+}
+
+.chakra-textarea,
+.chakra-input,
+.chakra-select {
+  background-color: #fff!important;
+}
+
+.chakra-input {
+  padding-bottom: 1px;
+}
+
+.chakra-textarea:hover,
+.chakra-input:hover,
+.chakra-select:hover {
+  border: 1px solid #ee9972!important;
+}
+
+form textarea {
+  padding: 6px 35px!important;
+}
+
+form label {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px!important;
+  margin-top: 10px;
+  font-weight: 600!important;
+}
+
+.chakra-button {
+  margin-top: 40px;
+  background-color: #000!important;
+  color: #EDEFEE!important;
+  font-family: 'Karla', sans-serif;
+  font-size: 19px!important;
+}
+
+.chakra-button:hover {
+  background-color: #ee9972!important;
+  color: #000!important;
 }

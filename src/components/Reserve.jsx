@@ -1,11 +1,12 @@
 import Header from './Header';
 import Footer from './Footer';
+import ReserveMain from './ReserveMain';
 
 const Reserve = () => {
     return (
         <>
             <Header/>
-            <h1>reserve</h1>
+            <ReserveMain/>
             <Footer/>
         </>
     );

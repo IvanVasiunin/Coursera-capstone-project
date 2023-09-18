@@ -2,6 +2,7 @@ import tilly from '../assets/images/tilly.jpg';
 import michael from '../assets/images/michael.jpg';
 import dan from '../assets/images/dan.jpg';
 import julia from '../assets/images/julia.jpg';
+import { FaRegStar, FaStar } from "react-icons/fa6";
 
 
 const Testimonals = () => {
@@ -42,8 +43,8 @@ const Testimonals = () => {
                             <div className="testimonal" key={i}>
                                 <span>
                                     {item.rating.toFixed(1)} / 5.0
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-regular fa-star"></i>
+                                    <FaStar/>
+                                    <FaRegStar/>
                                 </span>
                                 <div className="testimonal_user">
                                     <img src={item.img} alt="User's photo" />
