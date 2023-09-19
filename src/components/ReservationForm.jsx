@@ -2,7 +2,6 @@ import {useEffect, useState, useRef} from "react";
 import { useFormik } from "formik";
 import { useNavigate } from 'react-router-dom';
 import {
-  Button,
   Box,
   FormControl,
   FormErrorMessage,
@@ -26,7 +25,7 @@ import {
   LiaClock
  } from "react-icons/lia";
 import * as Yup from 'yup';
-import {fetchAPI,submitAPI} from '../API/apiSimulator';
+import {submitAPI} from '../API/apiSimulator';
 
 const ReservationForm = ({availableTimes, updateTimes}) => {
 

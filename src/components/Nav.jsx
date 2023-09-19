@@ -1,6 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
-import Reserve from './Reserve';
-import Homepage from './Homepage';
+import {Link } from "react-router-dom";
 
 const Nav = () => {
 
