@@ -1,5 +1,6 @@
 import {useEffect, useState, useRef} from "react";
 import { useFormik } from "formik";
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Box,
@@ -31,6 +32,8 @@ const ReservationForm = ({availableTimes, updateTimes}) => {
 
     const [times, setTimes] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (availableTimes instanceof Promise) {
           availableTimes
@@ -47,6 +50,7 @@ const ReservationForm = ({availableTimes, updateTimes}) => {
 
     const phoneRegExp = /^((\+[1-9]{1,4}[\s\-]*)|(\([0-9]{2,3}\)[\s\-]*)|([0-9]{2,4})[\s\-]*)*?[0-9]{3,4}?[\s\-]*[0-9]{3,4}?$/
 
+
     const formik = useFormik({
         initialValues: {
           name: '',
@@ -58,9 +62,10 @@ const ReservationForm = ({availableTimes, updateTimes}) => {
           comment: '',
         },
         onSubmit: async (values) => {
-            submitAPI(values);
-            console.log('submited');
-            formik.resetForm();
+            const response = await submitAPI(values);
+            if (response === true) {
+                navigate('/confirmed');
+            }
         },
         validationSchema: Yup.object({
           name: Yup.string().required('Name is required'),

@@ -9,7 +9,6 @@ const ReserveMain = () => {
             case 'update_times':
                 const response = await fetchAPI(action.date);
                 const times = await response;
-                console.log(times)
                 return times;
             default:
               return state;

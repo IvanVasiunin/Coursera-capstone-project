@@ -609,3 +609,44 @@ form button:hover {
 .date_and_time > div {
   width: 47%;
 }
+
+.confirmation_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - (123px + 410px));
+  background-color: #EDEFEE;
+}
+
+.confirmation_block .container {
+  justify-content: center;
+  border: 3px solid #F4CE14;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.confirmation_message {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Karla', sans-serif;
+  font-size: 22px;
+}
+
+.confirmation_message p {
+  font-weight: 600;
+}
+
+.confirmation_message a {
+  color: #333;
+}
+
+.confirmation_message a:hover {
+  text-decoration: underline;
+}
+
+.confirmation_message p:last-of-type {
+  margin-bottom: 15px;
+}
