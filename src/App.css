@@ -573,15 +573,39 @@ form label {
   font-weight: 600!important;
 }
 
-.chakra-button {
+form button {
   margin-top: 40px;
-  background-color: #000!important;
-  color: #EDEFEE!important;
+  border-radius: 0.375rem;
+  padding:7px;
+  background-color: #000;
+  color: #EDEFEE;
   font-family: 'Karla', sans-serif;
-  font-size: 19px!important;
+  font-size: 19px;
+  font-weight: 600;
 }
 
-.chakra-button:hover {
-  background-color: #ee9972!important;
-  color: #000!important;
+form button:disabled {
+  background-color: #707070;
+  cursor: default;
+}
+
+form button:disabled:hover {
+  background-color: #707070;
+  cursor: default;
+  color: #EDEFEE;
+}
+
+form button:hover {
+  background-color: #ee9972;
+  color: #000;
+}
+
+.date_and_time {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date_and_time > div {
+  width: 47%;
 }

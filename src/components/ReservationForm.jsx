@@ -1,25 +1,18 @@
-import {useEffect, useRef} from "react";
+import {useEffect, useState, useRef} from "react";
 import { useFormik } from "formik";
 import {
-  Box,
   Button,
+  Box,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Heading,
   Input,
   Select,
   Textarea,
-  VStack,
   InputLeftElement,
   InputRightElement,
   InputGroup,
   Icon,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper
 } from "@chakra-ui/react";
 import {
   LiaUserCircle,
@@ -28,11 +21,29 @@ import {
   LiaGlassCheersSolid,
   LiaCommentDots,
   LiaCheckCircle,
-  LiaCalendarAltSolid
+  LiaCalendarAltSolid,
+  LiaClock
  } from "react-icons/lia";
 import * as Yup from 'yup';
+import {fetchAPI,submitAPI} from '../API/apiSimulator';
 
-const ReservationForm = () => {
+const ReservationForm = ({availableTimes, updateTimes}) => {
+
+    const [times, setTimes] = useState([]);
+
+    useEffect(() => {
+        if (availableTimes instanceof Promise) {
+          availableTimes
+            .then((resolvedTimes) => {
+              setTimes(resolvedTimes);
+            })
+            .catch((error) => {
+              console.error("Error fetching available times:", error);
+            });
+        } else {
+          setTimes(availableTimes);
+        }
+      }, [availableTimes]);
 
     const phoneRegExp = /^((\+[1-9]{1,4}[\s\-]*)|(\([0-9]{2,3}\)[\s\-]*)|([0-9]{2,4})[\s\-]*)*?[0-9]{3,4}?[\s\-]*[0-9]{3,4}?$/
 
@@ -40,29 +51,31 @@ const ReservationForm = () => {
         initialValues: {
           name: '',
           phone: '',
-          type: 'Other',
-          dateTime: '',
-          numPersons: 0,
+          type: '',
+          date: '',
+          time: '',
+          numPersons: 1,
           comment: '',
         },
         onSubmit: async (values) => {
-          console.log(values)
+            submitAPI(values);
+            console.log('submited');
+            formik.resetForm();
         },
         validationSchema: Yup.object({
           name: Yup.string().required('Name is required'),
           phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Phone is required'),
           type: Yup.string(),
-          dateTime: Yup.date('Please enter the correct date and time')
-            .required('Date and Time is required')
-            .min(new Date(), 'Date and Time cannot be in the past')
-            .max(
-                new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
-                'Date and Time cannot be more than a month in the future'
-            )
-            .test('time', 'Time must be between 10:00 and 22:00', (value) => {
-                const selectedTime = new Date(value).getHours();
-                return selectedTime >= 10 && selectedTime <= 21;
+          date: Yup.date()
+            .required('Date is required')
+            .test('date', 'Date cannot be in the past', function (value) {
+                const currentDate = new Date();
+                currentDate.setHours(0, 0, 0, 0);
+                return value >= currentDate;
             }),
+            time: Yup.string().test('time', 'Please choose another day', (value) => {
+                return value !== 'No available times for selected date.';
+              }).required('Time is required'),
           numPersons:Yup.number()
             .min(1, 'Number of guests must be greater than 0')
             .max(20, 'Number of guests must be 20 or less')
@@ -70,6 +83,15 @@ const ReservationForm = () => {
           comment: Yup.string().max(2000, 'Maximum number of characters 2000'),
         }),
     });
+
+    useEffect(() => {
+        const todayDate = new Date();
+        const dateString = `${todayDate.getFullYear()}-${todayDate.getMonth() + 1 > 10 ? todayDate.getMonth() + 1 : '0' + (todayDate.getMonth() + 1)}-${todayDate.getDate() > 10 ? todayDate.getDate() : '0' + todayDate.getDate()}`;
+        const date = formik.values.date ? formik.values.date : dateString;
+        formik.setFieldValue('date', date);
+        updateTimes({ type: 'update_times', date: date });
+    }, [formik.values.date])
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <FormControl isInvalid={formik.errors.name && formik.touched.name} isRequired>
@@ -116,6 +138,7 @@ const ReservationForm = () => {
                         placeholder='Select occasion'
                         id="type"
                         name="type"
+                        {...formik.getFieldProps('type')}
                         >
                         <option value="Birthday">Birthday</option>
                         <option value="Engagement">Engagement</option>
@@ -143,26 +166,50 @@ const ReservationForm = () => {
                 </InputGroup>
                 <FormErrorMessage>{formik.errors.numPersons}</FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={formik.errors.dateTime && formik.touched.dateTime} isRequired>
-                <FormLabel htmlFor="dateTime">Date and time of visit</FormLabel>
-                <InputGroup>
-                    <InputLeftElement pointerEvents='none'>
-                        <Icon as={LiaCalendarAltSolid}/>
-                    </InputLeftElement>
-                    <Input
-                        paddingRight={formik.errors.dateTime && formik.touched.dateTime ? '9px' : formik.touched.dateTime ? '32px' : '9px'}
-                        placeholder="Select Date and Time"
-                        type="datetime-local"
-                        id="dateTime"
-                        name="dateTime"
-                        {...formik.getFieldProps('dateTime')}
-                    />
-                    <InputRightElement display={formik.errors.dateTime && formik.touched.dateTime ? 'none' : formik.touched.dateTime ? 'flex' : 'none'}>
-                        <Icon as={LiaCheckCircle} color='green.500'/>
-                    </InputRightElement>
-                </InputGroup>
-                <FormErrorMessage>{formik.errors.dateTime}</FormErrorMessage>
-            </FormControl>
+            <div className="date_and_time">
+                <FormControl isInvalid={formik.errors.date && formik.touched.date} isRequired>
+                    <FormLabel htmlFor="date">Date of visit</FormLabel>
+                    <InputGroup>
+                        <InputLeftElement pointerEvents='none'>
+                            <Icon as={LiaCalendarAltSolid}/>
+                        </InputLeftElement>
+                        <Input
+                            paddingRight={formik.errors.date && formik.touched.date ? '9px' : formik.touched.date ? '32px' : '9px'}
+                            placeholder="Select Date"
+                            type="date"
+                            id="date"
+                            name="date"
+                            {...formik.getFieldProps('date')}
+                        />
+                        <InputRightElement display={formik.errors.date && formik.touched.date ? 'none' : formik.touched.date ? 'flex' : 'none'}>
+                            <Icon as={LiaCheckCircle} color='green.500'/>
+                        </InputRightElement>
+                    </InputGroup>
+                    <FormErrorMessage>{formik.errors.date}</FormErrorMessage>
+                </FormControl>
+                <FormControl isInvalid={formik.errors.time && formik.touched.time} isRequired>
+                    <FormLabel htmlFor="time">Time</FormLabel>
+                    <InputGroup>
+                        <InputLeftElement pointerEvents='none'>
+                            <Icon as={LiaClock}/>
+                        </InputLeftElement>
+                        <Select
+                            placeholder='Select time'
+                            id="time"
+                            name="time"
+                            {...formik.getFieldProps('time')}
+                            >
+                            {times.map((time) => (
+                                    <option key={time} value={time}>
+                                        {time}
+                                    </option>
+                                ))
+                            }
+                        </Select>
+                    </InputGroup>
+                    <FormErrorMessage>{formik.errors.time}</FormErrorMessage>
+                </FormControl>
+            </div>
             <FormControl isInvalid={formik.errors.comment && formik.touched.comment}>
                 <FormLabel htmlFor="comment">Comment</FormLabel>
                 <InputGroup>
@@ -179,9 +226,9 @@ const ReservationForm = () => {
                 </InputGroup>
                 <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
             </FormControl>
-            <Button type="submit" width="full">
+            <Box as='button' type="submit" width="full" disabled={formik.errors.name || formik.errors.phone || formik.errors.date || formik.errors.time}>
                 Submit
-            </Button>
+            </Box>
         </form>
     );
 }
